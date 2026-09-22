@@ -41,6 +41,6 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           password: ${{ secrets.VPS_PASSWORD }}
           script: |
-            sudo rsync -a --delete /home/ubuntu/KhotoutCo.sa-temp/ /home/khotout/htdocs/KhotoutCo.sa/
-            sudo chown -R khotout:khotout /home/khotout/htdocs/KhotoutCo.sa/
+            sudo rsync -a --delete /home/ubuntu/KhotoutCo.sa-temp/ /home/khotout/htdocs/khotoutco.sa/
+            sudo chown -R khotout:khotout /home/khotout/htdocs/khotoutco.sa/
             rm -rf /home/ubuntu/KhotoutCo.sa-temp/
