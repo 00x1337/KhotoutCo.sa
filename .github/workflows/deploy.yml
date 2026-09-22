@@ -1,4 +1,4 @@
-name: Deploy to VPS
+name: Deploy Next.js to VPS
 
 on:
   push:
@@ -12,11 +12,24 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Next.js App
+        run: npm run build
+
       - name: Copy files to VPS
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
           password: ${{ secrets.VPS_PASSWORD }}
-          source: "*"
+          source: "out/*"
           target: "/var/www/KhotoutCo.sa/html"
+          strip_components: 1
