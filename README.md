@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# موقع شركة خطوط الإنشاء
 
-## Getting Started
+موقع تعريفي عربي لشركة خطوط الإنشاء للمقاولات العامة، مبني باستخدام Next.js ويُصدر كموقع ثابت جاهز للنشر.
 
-First, run the development server:
+## التشغيل محليًا
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ثم افتح `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## بناء نسخة التسليم
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run preview
+```
 
-## Learn More
+ينشئ أمر البناء نسخة الموقع النهائية داخل مجلد `out/`. أمر المعاينة يشغّل هذه النسخة كما ستظهر بعد النشر.
 
-To learn more about Next.js, take a look at the following resources:
+## النشر
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+يعمل مسار GitHub Actions الموجود في `.github/workflows/deploy.yml` عند الدفع إلى فرع `main`. يبني الموقع ثم يزامن محتويات `out/` إلى مجلد موقع CloudPanel.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+يتطلب المسار الأسرار التالية في إعدادات المستودع:
 
-## Deploy on Vercel
+- `VPS_HOST`
+- `VPS_USERNAME`
+- `VPS_PASSWORD`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## المحتوى والتواصل
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- بيانات الشركة والخدمات في `src/lib/company.ts`.
+- الصور الأصلية المستخرجة من ملف الشركة في `public/images/`.
+- الملف التعريفي العام في `public/downloads/khotout-company-profile.pdf`، ويحتوي صفحات التعريف والخدمات فقط.
+- نموذج التواصل يجهّز رسالة ثم يفتح واتساب للمستخدم لمراجعتها وإرسالها؛ لا توجد قاعدة بيانات أو لوحة استقبال للنماذج.
+
+قبل تعديل بيانات الاعتمادات أو التواصل، تحقّق من الوثائق المحدثة المعتمدة من الشركة.
